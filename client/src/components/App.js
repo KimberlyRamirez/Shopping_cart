@@ -1,20 +1,16 @@
 import '../../App.css'
 import ProductListing from './ProductListing'
 import Cart from './Cart'
-import Form from './Form'
 
 const App = () => {
   return (
     <div id="app">
     <header>
-      <Cart />
+      <Cart/>
     </header>
 
     <main>
-      <ProductListing />
-      <Form />
-
-
+      <ProductListing/>
     </main>
   </div>
   )
