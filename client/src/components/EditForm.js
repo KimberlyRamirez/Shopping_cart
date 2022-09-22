@@ -1,9 +1,14 @@
 import { useState } from "react"
 
-const EditForm = ({ name, price, qty }) => {
+const EditForm = ({ name, price, qty, handler }) => {
   let [productValue, setProductValue] = useState(name)
   let [priceValue, setPriceValue] = useState(price)
   let [qtyValue, setQtyValue] = useState(qty)
+
+  let cancelBtnHandler = (e) => {
+    e.preventDefault()
+    handler(false)
+  }
 
   return (
     <div className="edit-form">
@@ -26,7 +31,7 @@ const EditForm = ({ name, price, qty }) => {
 
           <div className="actions form-actions">
             <a className="button">Update</a>
-            <a className="button">Cancel</a>
+            <a className="button" onClick={cancelBtnHandler}>Cancel</a>
           </div>
       </form>
     </div>

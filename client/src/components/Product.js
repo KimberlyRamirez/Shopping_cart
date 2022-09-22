@@ -40,7 +40,7 @@ const Product = ({ name, price, qty }) => {
           </div>
           <a className="delete-button"><span>X</span></a>
         </div>
-        <EditForm/>
+        <EditForm handler={selectEditProductBtnPushed}/>
       </div>
       </div>
     )
