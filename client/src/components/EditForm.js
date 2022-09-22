@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-const EditForm = ({ name, price, qty, handler }) => {
+const EditForm = ({ name, price, qty, onShowForm }) => {
   let [productValue, setProductValue] = useState(name)
   let [priceValue, setPriceValue] = useState(price)
   let [qtyValue, setQtyValue] = useState(qty)
 
   let cancelBtnHandler = (e) => {
     e.preventDefault()
-    handler(false)
+    onShowForm(false)
   }
 
   return (

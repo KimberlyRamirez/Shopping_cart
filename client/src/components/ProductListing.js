@@ -1,4 +1,4 @@
-import Product from "./Product"
+import EditableProduct from "./EditableProduct"
 import { useState } from "react"
 import AddProductForm from "./AddProductForm"
 
@@ -19,19 +19,20 @@ const ProductList = () => {
   return (
     <div>
       <div className="product-listing">
-        <Product
+      <h2>Products</h2>
+        <EditableProduct
           name="Amazon Kindle E-reader"
           price="$79.99"
           qty="5 left in stock"
         />
 
-        <Product
+        <EditableProduct
           name="Apple 10.5-Inch ipadPro"
           price="649.99"
           qty="2 left in stock"
         />
 
-        <Product
+        <EditableProduct
           name="Yamaha Portable Keyboard"
           price="$155.99"
           qty="0 left in stock"

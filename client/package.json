@@ -21,14 +21,15 @@
   },
   "homepage": "https://github.com/KimberlyRamirez/Shopping_cart#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "eslint": "^8.23.1",
+    "http-proxy-middleware": "^2.0.6",
     "parcel": "^2.7.0",
     "prettier": "^2.7.1",
-    "process": "^0.11.10",
-    "http-proxy-middleware": "^2.0.6"
+    "process": "^0.11.10"
   }
 }
