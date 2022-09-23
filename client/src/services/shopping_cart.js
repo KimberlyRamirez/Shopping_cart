@@ -26,4 +26,22 @@ const updateProduct = async (id, product) => {
   return req.data
 }
 
-export default { getAll, getCart , addToCart, checkout, updateProduct }
+const createProduct = async (product) => {
+  let req = await axios.post("api/products", product)
+  return req.data
+}
+
+const deleteProduct = async (id) => {
+  let req = await axios.delete(`/api/products/${id}`)
+  return req.status
+}
+
+
+export default { getAll,
+                 getCart,
+                 addToCart,
+                 checkout,
+                 updateProduct,
+                 createProduct,
+                 deleteProduct,
+                }

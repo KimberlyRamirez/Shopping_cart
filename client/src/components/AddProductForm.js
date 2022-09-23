@@ -1,9 +1,20 @@
 import { useState } from "react"
+import Service from "../services/shopping_cart"
 
-const AddProductForm = () => {
+const AddProductForm = ({ setProductFormVisible, setProducts, products }) => {
   let [productName, setProductName] = useState("")
   let [price, setPrice] = useState("")
   let [qty, setQty] = useState("")
+
+  let handleAddProduct = (e) => {
+    e.preventDefault()
+    const newProduct = { title: productName, price, quantity: qty }
+    Service.createProduct(newProduct).then(res => {
+      setProducts([...products, res])
+    })
+
+    setProductFormVisible(false)
+  }
 
   return (
     <div className="add-form visible">
@@ -26,8 +37,8 @@ const AddProductForm = () => {
       </div>
 
       <div className="actions form-actions">
-        <a className="button">Add</a>
-        <a className="button">Cancel</a>
+        <a className="button" onClick={handleAddProduct}>Add</a>
+        <a className="button" onClick={() => setProductFormVisible(false)}>Cancel</a>
       </div>
     </form>
   </div>

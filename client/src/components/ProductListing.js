@@ -1,28 +1,27 @@
 import EditableProduct from "./EditableProduct"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import AddProductForm from "./AddProductForm"
+import AddProductButton from "./AddProductButton"
 
 const ProductList = ({ handleAddToCart, products, setProducts }) => {
-  const [addProductPushed, selectProductPushed] = useState(false)
-
-
-  const addProductHandler = (e) => {
-    e.preventDefault()
-    selectProductPushed(true)
-  }
-
-  const AddProductButton = () => {
-    return (
-      <p><a className="button add-product-button" onClick={addProductHandler}>Add A Product</a></p>
-    )
-  }
+  const [productFormVisible, setProductFormVisible] = useState(false)
 
   return (
     <div>
       {products.map((product, idx) => {
-        return <EditableProduct products={products} setProducts={setProducts} handleAddToCart={handleAddToCart} products={products} key={product+idx} title={product.title} price={product.price} quantity={product.quantity}/>
+        return <EditableProduct
+        products={products}
+        setProducts={setProducts}
+        handleAddToCart={handleAddToCart}
+        key={product+idx}
+        title={product.title}
+        price={product.price}
+        quantity={product.quantity}/>
       })}
-      {addProductPushed ? <AddProductForm/> : <AddProductButton/>}
+      {productFormVisible ? <AddProductForm
+        setProductFormVisible={setProductFormVisible}
+        setProducts={setProducts}
+        products={products}/> : <AddProductButton setProductFormVisible={setProductFormVisible}/>}
     </div>
   )
 }
