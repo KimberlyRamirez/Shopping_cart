@@ -1,12 +1,28 @@
 import { useState } from "react"
+import Services from "../services/shopping_cart"
 
-const EditForm = ({ title, price, quantity, onShowForm }) => {
+
+const EditForm = ({ title, price, quantity, onShowForm, setProducts, products }) => {
   let [productName, setProduct] = useState(title)
   let [priceVal, setPrice] = useState(price)
   let [qty, setQtyValue] = useState(quantity)
 
   let cancelBtnHandler = (e) => {
     e.preventDefault()
+    onShowForm(false)
+  }
+
+  let handleUpdate = (e) => {
+    e.preventDefault()
+    let product = products.filter(ele => ele.title === title)[0]
+    let id = product["_id"]
+
+    product.title = productName
+    product.price = priceVal
+    product.quantity = qty
+
+    Services.updateProduct(id, {title: product.title, price: product.price, quantity: product.quantity})
+    setProducts([...products])
     onShowForm(false)
   }
 
@@ -30,7 +46,7 @@ const EditForm = ({ title, price, quantity, onShowForm }) => {
           </div>
 
           <div className="actions form-actions">
-            <a className="button">Update</a>
+            <a className="button" onClick={handleUpdate}>Update</a>
             <a className="button" onClick={(e) => cancelBtnHandler(e)}>Cancel</a>
           </div>
       </form>

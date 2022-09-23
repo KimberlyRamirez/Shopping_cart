@@ -21,5 +21,9 @@ const checkout = async () => {
   return req
 }
 
+const updateProduct = async (id, product) => {
+  let req = await axios.put(`api/products/${id}`, product)
+  return req.data
+}
 
-export default { getAll, getCart , addToCart, checkout }
+export default { getAll, getCart , addToCart, checkout, updateProduct }

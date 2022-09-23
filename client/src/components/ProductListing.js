@@ -1,9 +1,8 @@
 import EditableProduct from "./EditableProduct"
 import { useState, useEffect } from "react"
 import AddProductForm from "./AddProductForm"
-import Services from "../services/shopping_cart"
 
-const ProductList = ({ handleAddToCart, products }) => {
+const ProductList = ({ handleAddToCart, products, setProducts }) => {
   const [addProductPushed, selectProductPushed] = useState(false)
 
 
@@ -21,7 +20,7 @@ const ProductList = ({ handleAddToCart, products }) => {
   return (
     <div>
       {products.map((product, idx) => {
-        return <EditableProduct handleAddToCart={handleAddToCart} products={products} key={product+idx} title={product.title} price={product.price} quantity={product.quantity}/>
+        return <EditableProduct products={products} setProducts={setProducts} handleAddToCart={handleAddToCart} products={products} key={product+idx} title={product.title} price={product.price} quantity={product.quantity}/>
       })}
       {addProductPushed ? <AddProductForm/> : <AddProductButton/>}
     </div>

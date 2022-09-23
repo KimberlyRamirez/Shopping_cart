@@ -10,12 +10,6 @@ const App = () => {
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
 
-  const checkoutHandler = (e) => {
-    e.preventDefault()
-    Services.checkout()
-    setCart([])
-  }
-
   useEffect(() => {
     Services.getAll().then(res => {
       setProducts(res)
@@ -27,6 +21,12 @@ const App = () => {
       setCart(res)
     })
   }, [])
+
+  const checkoutHandler = (e) => {
+    e.preventDefault()
+    Services.checkout()
+    setCart([])
+  }
 
   const handleAddToCart = (e, title) => {
     e.preventDefault()
@@ -56,7 +56,7 @@ const App = () => {
     </header>
 
     <main>
-      <ProductListing handleAddToCart={handleAddToCart} products={products}/>
+      <ProductListing handleAddToCart={handleAddToCart} products={products} setProducts={setProducts}/>
     </main>
   </div>
   )
