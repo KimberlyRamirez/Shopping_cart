@@ -1,9 +1,11 @@
 import EditableProduct from "./EditableProduct"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import AddProductForm from "./AddProductForm"
+import Services from "../services/shopping_cart"
 
-const ProductList = () => {
+const ProductList = ({ handleAddToCart, products }) => {
   const [addProductPushed, selectProductPushed] = useState(false)
+
 
   const addProductHandler = (e) => {
     e.preventDefault()
@@ -18,26 +20,9 @@ const ProductList = () => {
 
   return (
     <div>
-      <div className="product-listing">
-      <h2>Products</h2>
-        <EditableProduct
-          name="Amazon Kindle E-reader"
-          price="$79.99"
-          qty="5 left in stock"
-        />
-
-        <EditableProduct
-          name="Apple 10.5-Inch ipadPro"
-          price="649.99"
-          qty="2 left in stock"
-        />
-
-        <EditableProduct
-          name="Yamaha Portable Keyboard"
-          price="$155.99"
-          qty="0 left in stock"
-        />
-      </div>
+      {products.map((product, idx) => {
+        return <EditableProduct handleAddToCart={handleAddToCart} products={products} key={product+idx} title={product.title} price={product.price} quantity={product.quantity}/>
+      })}
       {addProductPushed ? <AddProductForm/> : <AddProductButton/>}
     </div>
   )

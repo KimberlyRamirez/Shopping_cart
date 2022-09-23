@@ -1,16 +1,62 @@
 import '../../App.css'
 import ProductListing from './ProductListing'
-import Cart from './Cart'
+import { useState, useEffect } from 'react'
+import Services from "../services/shopping_cart"
+import CartWithoutItems from './CartWithoutItems'
+import CartWithItems from './CartWithItems'
+
 
 const App = () => {
+  const [products, setProducts] = useState([])
+  const [cart, setCart] = useState([])
+
+  const checkoutHandler = (e) => {
+    e.preventDefault()
+    Services.checkout()
+    setCart([])
+  }
+
+  useEffect(() => {
+    Services.getAll().then(res => {
+      setProducts(res)
+    })
+  }, [])
+
+  useEffect(() => {
+    Services.getCart().then(res => {
+      setCart(res)
+    })
+  }, [])
+
+  const handleAddToCart = (e, title) => {
+    e.preventDefault()
+
+    const product = products.filter(ele => ele.title === title)
+
+    Services.addToCart(product[0]["_id"]).then(({item}) => {
+      let filteredCart = cart.filter(ele => ele.title === title)
+      let filteredProducts = products.filter(ele => ele.title === title)
+
+      if (filteredCart.length > 0) {
+        filteredCart[0].quantity++
+        setCart([...cart])
+      } else {
+        setCart(cart.concat(item))
+      }
+
+      filteredProducts[0].quantity--
+      setProducts([...products])
+    })
+  }
+
   return (
     <div id="app">
     <header>
-      <Cart/>
+      {cart.length === 0 ? <CartWithoutItems/> : <CartWithItems products={cart} checkoutHandler={checkoutHandler}/>}
     </header>
 
     <main>
-      <ProductListing/>
+      <ProductListing handleAddToCart={handleAddToCart} products={products}/>
     </main>
   </div>
   )

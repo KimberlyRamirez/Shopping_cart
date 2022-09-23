@@ -1,4 +1,4 @@
-const Cart = () => {
+const CartWithoutItems = () => {
   return (
     <div>
       <h1>The Shop!</h1>
@@ -12,4 +12,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default CartWithoutItems
