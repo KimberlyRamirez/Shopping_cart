@@ -1,4 +1,4 @@
-const AddProductButton = () => {
+const AddProductButton = ({ setProductFormVisible }) => {
   return (
     <>
       <p>
