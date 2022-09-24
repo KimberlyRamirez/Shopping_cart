@@ -1,0 +1,35 @@
+{
+  "name": "shopping_cart_boilerplate",
+  "version": "1.0.0",
+  "description": "## Setup",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KimberlyRamirez/Shopping_cart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KimberlyRamirez/Shopping_cart/issues"
+  },
+  "homepage": "https://github.com/KimberlyRamirez/Shopping_cart#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "http-proxy-middleware": "^2.0.6",
+    "parcel": "^2.7.0",
+    "prettier": "^2.7.1",
+    "process": "^0.11.10"
+  }
+}
