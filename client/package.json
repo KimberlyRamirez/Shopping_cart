@@ -26,6 +26,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "eslint": "^8.23.1",
     "http-proxy-middleware": "^2.0.6",
     "parcel": "^2.7.0",

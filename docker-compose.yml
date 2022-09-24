@@ -1,0 +1,32 @@
+version: "2"
+services:
+    client:
+        image: client
+        restart: always
+        ports:
+            - "1234:1234"
+        working_dir: /client/src/index
+        volumes:
+            - ./client:/client/src/index
+            - /client/node_modules
+        entrypoint: ["npm", "start"]
+        links:
+            - server
+        networks:
+            - shoppingappnetwork
+
+    server:
+        image: server
+        restart: always
+        ports:
+            - "5001:5001"
+        volumes:
+            - ./server:/server
+            - /server/node_modules
+        networks:
+            - shoppingappnetwork
+        environment:
+            - DB
+networks:
+    shoppingappnetwork:
+        driver: bridge
